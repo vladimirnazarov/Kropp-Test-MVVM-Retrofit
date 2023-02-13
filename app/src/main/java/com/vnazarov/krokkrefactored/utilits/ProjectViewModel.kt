@@ -1,4 +1,4 @@
-package com.vnazarov.krokkrefactored.fragments.regions
+package com.vnazarov.krokkrefactored.utilits
 
 import android.view.View
 import androidx.core.os.bundleOf
@@ -6,9 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.navOptions
-import com.vnazarov.krokkrefactored.R
 
-class RegionsViewModel: ViewModel() {
+open class ProjectViewModel: ViewModel() {
 
     private lateinit var navController: NavController
 
@@ -16,10 +15,10 @@ class RegionsViewModel: ViewModel() {
         navController = view.findNavController()
     }
 
-    fun navigateToCities(){
+    fun navigateTo(address: Int, array: ArrayList<Any> = arrayListOf(), fromName: String){
         navController.navigate(
-            R.id.action_regionsFragment_to_citiesFragment,
-            bundleOf("" to ""),
+            address,
+            bundleOf(fromName to array),
             navOptions {
                 anim {
                     enter = androidx.navigation.ui.R.anim.nav_default_enter_anim
