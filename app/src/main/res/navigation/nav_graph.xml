@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/regionsFragment">
+
+    <fragment
+        android:id="@+id/regionsFragment"
+        android:name="com.vnazarov.krokkrefactored.fragments.regions.RegionsFragment"
+        android:label="RegionsFragment" >
+        <action
+            android:id="@+id/action_regionsFragment_to_citiesFragment"
+            app:destination="@id/citiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/citiesFragment"
+        android:name="com.vnazarov.krokkrefactored.fragments.cities.CitiesFragment"
+        android:label="CitiesFragment" >
+        <action
+            android:id="@+id/action_citiesFragment_to_regionsFragment"
+            app:destination="@id/regionsFragment" />
+        <action
+            android:id="@+id/action_citiesFragment_to_placesFragment"
+            app:destination="@id/placesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/placesFragment"
+        android:name="com.vnazarov.krokkrefactored.fragments.places.PlacesFragment"
+        android:label="PlacesFragment" >
+        <action
+            android:id="@+id/action_placesFragment_to_citiesFragment"
+            app:destination="@id/citiesFragment" />
+        <action
+            android:id="@+id/action_placesFragment_to_currentPlaceFragment"
+            app:destination="@id/currentPlaceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/currentPlaceFragment"
+        android:name="com.vnazarov.krokkrefactored.fragments.currentPlace.CurrentPlaceFragment"
+        android:label="CurrentPlaceFragment" >
+        <action
+            android:id="@+id/action_currentPlaceFragment_to_placesFragment"
+            app:destination="@id/placesFragment" />
+    </fragment>
+</navigation>

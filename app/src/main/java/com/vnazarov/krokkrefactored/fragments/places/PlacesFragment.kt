@@ -1,4 +1,7 @@
 package com.vnazarov.krokkrefactored.fragments.places
 
-class PlacesFragment {
+import androidx.fragment.app.Fragment
+import com.vnazarov.krokkrefactored.R
+
+class PlacesFragment: Fragment(R.layout.fragment_places) {
 }
