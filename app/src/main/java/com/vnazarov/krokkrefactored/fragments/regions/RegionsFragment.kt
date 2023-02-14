@@ -4,17 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.FragmentRegionsBinding
+import com.vnazarov.krokkrefactored.utilits.vm.RegionsViewModel
 
-class RegionsFragment : Fragment(R.layout.fragment_regions) {
+class RegionsFragment : Fragment() {
 
     private lateinit var mBinding: FragmentRegionsBinding
     private val viewModel: RegionsViewModel by activityViewModels()
@@ -35,7 +31,7 @@ class RegionsFragment : Fragment(R.layout.fragment_regions) {
         viewModel.defineNavController(view)
 
         mBinding.textView4.setOnClickListener {
-            viewModel.navigateToCities()
+            viewModel.navigateTo(R.id.action_regionsFragment_to_citiesFragment, fromName = "regions")
         }
     }
 }
