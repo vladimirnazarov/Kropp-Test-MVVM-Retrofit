@@ -1,11 +1,14 @@
 package com.vnazarov.krokkrefactored.utilits
 
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.navOptions
+import com.vnazarov.krokkrefactored.MainActivity
 
 open class ProjectViewModel: ViewModel() {
 
@@ -27,5 +30,19 @@ open class ProjectViewModel: ViewModel() {
                     exit = androidx.navigation.ui.R.anim.nav_default_exit_anim
                 }
             })
+    }
+
+    fun initializeToolbar(activity: MainActivity, toolbar: Toolbar, title: String, popBack: Boolean = true){
+        if (popBack){
+            toolbar.title = title
+            activity.setSupportActionBar(toolbar)
+            activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            toolbar.setNavigationOnClickListener {
+                activity.onBackPressed()
+            }
+        } else {
+            toolbar.title = title
+            activity.setSupportActionBar(toolbar)
+        }
     }
 }
