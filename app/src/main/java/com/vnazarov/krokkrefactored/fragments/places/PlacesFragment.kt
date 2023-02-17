@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.vnazarov.krokkrefactored.MainActivity
 import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.FragmentPlacesBinding
 import com.vnazarov.krokkrefactored.utilits.vm.PlacesViewModel
@@ -13,6 +15,7 @@ import com.vnazarov.krokkrefactored.utilits.vm.PlacesViewModel
 class PlacesFragment: Fragment() {
 
     private lateinit var mBinding: FragmentPlacesBinding
+    private lateinit var mToolbar: Toolbar
     private val viewModel: PlacesViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -21,6 +24,8 @@ class PlacesFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         mBinding = FragmentPlacesBinding.inflate(layoutInflater)
+        mToolbar = mBinding.placesToolbar
+        viewModel.initializeToolbar(activity as MainActivity, mToolbar, "Places")
 
         return mBinding.root
     }
