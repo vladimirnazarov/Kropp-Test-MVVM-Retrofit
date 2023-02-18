@@ -10,7 +10,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.navOptions
 import com.vnazarov.krokkrefactored.MainActivity
 
-open class ProjectViewModel: ViewModel() {
+open class BaseViewModel: ViewModel() {
 
     private lateinit var navController: NavController
 

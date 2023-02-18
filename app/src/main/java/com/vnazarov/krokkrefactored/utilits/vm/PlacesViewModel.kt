@@ -1,6 +1,6 @@
 package com.vnazarov.krokkrefactored.utilits.vm
 
-import com.vnazarov.krokkrefactored.utilits.ProjectViewModel
+import com.vnazarov.krokkrefactored.utilits.BaseViewModel
 
-class PlacesViewModel: ProjectViewModel() {
+class PlacesViewModel: BaseViewModel() {
 }
