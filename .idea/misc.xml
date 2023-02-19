@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/drawable/button_ripple_effect.xml" value="0.1225" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/city_item.xml" value="0.2536231884057971" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/fragment_cities.xml" value="0.22826086956521738" />
