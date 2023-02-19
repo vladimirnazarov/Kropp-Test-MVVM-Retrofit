@@ -3,9 +3,12 @@ package com.vnazarov.krokkrefactored.fragments.regions
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.RegionItemBinding
+import com.vnazarov.krokkrefactored.objects.Region
+import com.vnazarov.krokkrefactored.utilits.vm.RegionsViewModel
 
-class RegionsAdapter(private val list: List<Any>): RecyclerView.Adapter<RegionsAdapter.RegionsHolder>() {
+class RegionsAdapter(private val list: List<Region>, private val viewModel: RegionsViewModel): RecyclerView.Adapter<RegionsAdapter.RegionsHolder>() {
 
     inner class RegionsHolder(val binding: RegionItemBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -16,7 +19,11 @@ class RegionsAdapter(private val list: List<Any>): RecyclerView.Adapter<RegionsA
     }
 
     override fun onBindViewHolder(holder: RegionsHolder, position: Int) {
-        TODO("Not yet implemented")
+        with(holder){
+            with(list[position]){
+                viewModel.onBindRegion(binding, this.name, R.id.action_regionsFragment_to_citiesFragment)
+            }
+        }
     }
 
     override fun getItemCount(): Int = list.size
