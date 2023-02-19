@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.vnazarov.krokkrefactored.MainActivity
 import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.FragmentCitiesBinding
@@ -16,6 +18,8 @@ class CitiesFragment: Fragment() {
 
     private lateinit var mBinding: FragmentCitiesBinding
     private lateinit var mToolbar: Toolbar
+    private lateinit var adapter: CitiesAdapter
+    private lateinit var mRecyclerView: RecyclerView
     private val viewModel: CitiesViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -27,6 +31,9 @@ class CitiesFragment: Fragment() {
         mToolbar = mBinding.citiesToolbar
         viewModel.initializeToolbar(activity as MainActivity, mToolbar, "Cities")
 
+        mRecyclerView = mBinding.citiesRv
+        mRecyclerView.layoutManager = LinearLayoutManager(activity)
+
         return mBinding.root
     }
 
@@ -35,8 +42,8 @@ class CitiesFragment: Fragment() {
 
         viewModel.defineNavController(view)
 
-        mBinding.textView2.setOnClickListener {
-            viewModel.navigateTo(R.id.action_citiesFragment_to_placesFragment, fromName = "cities")
-        }
+        val dataCities = viewModel.initializeCities()
+        adapter = CitiesAdapter(dataCities, viewModel)
+        mRecyclerView.adapter = adapter
     }
 }

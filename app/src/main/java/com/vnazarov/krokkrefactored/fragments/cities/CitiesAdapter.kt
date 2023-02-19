@@ -3,9 +3,12 @@ package com.vnazarov.krokkrefactored.fragments.cities
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.CityItemBinding
+import com.vnazarov.krokkrefactored.objects.City
+import com.vnazarov.krokkrefactored.utilits.vm.CitiesViewModel
 
-class CitiesAdapter(val list: List<Any>): RecyclerView.Adapter<CitiesAdapter.CitiesHolder>() {
+class CitiesAdapter(private val list: List<City>, private val viewModel: CitiesViewModel): RecyclerView.Adapter<CitiesAdapter.CitiesHolder>() {
 
     inner class CitiesHolder(val binding: CityItemBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -16,7 +19,11 @@ class CitiesAdapter(val list: List<Any>): RecyclerView.Adapter<CitiesAdapter.Cit
     }
 
     override fun onBindViewHolder(holder: CitiesHolder, position: Int) {
-        TODO("Not yet implemented")
+        with(holder){
+            with(list[position]){
+                viewModel.onBindCity(binding, this.cityName, R.id.action_citiesFragment_to_placesFragment)
+            }
+        }
     }
 
     override fun getItemCount(): Int = list.size
