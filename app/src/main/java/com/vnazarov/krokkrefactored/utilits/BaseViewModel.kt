@@ -1,7 +1,6 @@
 package com.vnazarov.krokkrefactored.utilits
 
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModel
@@ -19,7 +18,7 @@ open class BaseViewModel: ViewModel() {
         navController = view.findNavController()
     }
 
-    fun navigateTo(address: Int, array: ArrayList<Any> = arrayListOf(), fromName: String){
+    private fun navigateTo(address: Int, array: ArrayList<Any> = arrayListOf(), fromName: String){
         navController.navigate(
             address,
             bundleOf(fromName to array),

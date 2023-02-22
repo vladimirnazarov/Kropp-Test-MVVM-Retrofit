@@ -1,8 +1,7 @@
 package com.vnazarov.krokkrefactored
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import com.vnazarov.krokkrefactored.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

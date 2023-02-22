@@ -3,7 +3,6 @@ package com.vnazarov.krokkrefactored.utilits
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.RvItemBinding
 import com.vnazarov.krokkrefactored.objects.City
 import com.vnazarov.krokkrefactored.objects.Place
