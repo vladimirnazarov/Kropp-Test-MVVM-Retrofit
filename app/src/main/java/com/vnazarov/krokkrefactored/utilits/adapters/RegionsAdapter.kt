@@ -8,4 +8,4 @@ class RegionsAdapter(
     list: List<Region>,
     viewModel: BaseViewModel,
     address: Int
-) : BaseAdapter(list, viewModel, address) {}
+) : BaseAdapter(list, viewModel, address)

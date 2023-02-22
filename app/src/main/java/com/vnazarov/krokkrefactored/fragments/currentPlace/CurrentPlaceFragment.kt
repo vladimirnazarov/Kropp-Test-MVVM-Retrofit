@@ -8,7 +8,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.vnazarov.krokkrefactored.MainActivity
-import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.FragmentCurrentPlaceBinding
 import com.vnazarov.krokkrefactored.utilits.vm.CurrentPlaceViewModel
 
