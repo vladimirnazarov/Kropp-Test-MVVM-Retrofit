@@ -1,8 +1,10 @@
 package com.vnazarov.krokkrefactored.utilits
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.vnazarov.krokkrefactored.databinding.RvItemBinding
 import com.vnazarov.krokkrefactored.objects.City
 import com.vnazarov.krokkrefactored.objects.Place
@@ -28,13 +30,14 @@ open class BaseAdapter(
                 when (this) {
                     is Region -> {
                         viewModel.onBindItem(binding, this.name, address)
+                        binding.image.load(this.imageId)
                     }
                     is City -> {
                         viewModel.onBindItem(binding, this.cityName, address)
                     }
                     is Place -> {
                         viewModel.onBindItem(binding, this.name, address)
-                    }
+                    } else -> Log.e("Adapter error", "Something went wrong")
                 }
             }
         }

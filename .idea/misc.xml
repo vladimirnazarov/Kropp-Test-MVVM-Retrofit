@@ -3,14 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1225" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/drawable/button_ripple_effect.xml" value="0.1225" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/city_item.xml" value="0.2536231884057971" />
+        <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/dialog_language_chose.xml" value="0.253125" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/fragment_cities.xml" value="0.22826086956521738" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/fragment_city.xml" value="0.2076923076923077" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/fragment_current_place.xml" value="0.22826086956521738" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/fragment_places.xml" value="0.2076923076923077" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/fragment_regions.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/language_dialog.xml" value="0.2956204379562044" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/place_item.xml" value="0.253125" />
         <entry key="..\:/Android/Projects/KrokkRefactored/app/src/main/res/layout/region_item.xml" value="0.176" />
       </map>
