@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vnazarov.krokkrefactored.MainActivity
 import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.FragmentPlacesBinding
+import com.vnazarov.krokkrefactored.utilits.adapters.PlacesAdapter
 import com.vnazarov.krokkrefactored.utilits.vm.PlacesViewModel
 
 class PlacesFragment: Fragment() {
@@ -43,7 +44,7 @@ class PlacesFragment: Fragment() {
         viewModel.defineNavController(view)
 
         val dataPlaces = viewModel.initializePlaces()
-        adapter = PlacesAdapter(dataPlaces, viewModel)
+        adapter = PlacesAdapter(dataPlaces, viewModel, R.id.action_placesFragment_to_currentPlaceFragment)
         mRecyclerView.adapter = adapter
     }
 }
