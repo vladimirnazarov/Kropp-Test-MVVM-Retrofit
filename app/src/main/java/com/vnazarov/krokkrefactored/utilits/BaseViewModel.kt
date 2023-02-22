@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.navOptions
 import com.vnazarov.krokkrefactored.MainActivity
+import com.vnazarov.krokkrefactored.databinding.RvItemBinding
 
 open class BaseViewModel: ViewModel() {
 
@@ -43,6 +44,15 @@ open class BaseViewModel: ViewModel() {
         } else {
             toolbar.title = title
             activity.setSupportActionBar(toolbar)
+        }
+    }
+
+    fun onBindItem(binding: RvItemBinding, name: String, address: Int){
+        binding.itemName.text = name
+
+        binding.fullItem.isClickable = true
+        binding.fullItem.setOnClickListener {
+            navigateTo(address, fromName = name)
         }
     }
 }

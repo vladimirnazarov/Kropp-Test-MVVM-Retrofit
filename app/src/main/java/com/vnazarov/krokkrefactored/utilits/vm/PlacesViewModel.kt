@@ -1,6 +1,5 @@
 package com.vnazarov.krokkrefactored.utilits.vm
 
-import com.vnazarov.krokkrefactored.databinding.PlaceItemBinding
 import com.vnazarov.krokkrefactored.objects.Place
 import com.vnazarov.krokkrefactored.utilits.BaseViewModel
 
@@ -15,14 +14,5 @@ class PlacesViewModel: BaseViewModel() {
         }
 
         return array
-    }
-
-    fun onBindPlaces(binding: PlaceItemBinding, name: String, address: Int){
-        binding.placeItemName.text = name
-
-        binding.placeFullItem.isClickable = true
-        binding.placeFullItem.setOnClickListener {
-            navigateTo(address, fromName = name)
-        }
     }
 }

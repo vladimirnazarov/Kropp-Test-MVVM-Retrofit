@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vnazarov.krokkrefactored.MainActivity
 import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.FragmentRegionsBinding
+import com.vnazarov.krokkrefactored.utilits.adapters.RegionsAdapter
 import com.vnazarov.krokkrefactored.utilits.vm.RegionsViewModel
 
 class RegionsFragment : Fragment() {
@@ -43,7 +44,7 @@ class RegionsFragment : Fragment() {
         viewModel.defineNavController(view)
 
         val dataRegions = viewModel.initializeRegions()
-        adapter = RegionsAdapter(dataRegions, viewModel)
+        adapter = RegionsAdapter(dataRegions, viewModel, R.id.action_regionsFragment_to_citiesFragment)
         mRecyclerView.adapter = adapter
     }
 }
