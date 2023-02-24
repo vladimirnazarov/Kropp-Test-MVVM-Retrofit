@@ -114,7 +114,7 @@ class RegionsViewModel : BaseViewModel() {
         rLang4.setOnClickListener {
             dialog.hide()
 
-            toolbarTitle = "Oblasti"
+            toolbarTitle = "Oblast"
             mToolbar.title = toolbarTitle
             initLangData(4, adapter, rv)
         }
