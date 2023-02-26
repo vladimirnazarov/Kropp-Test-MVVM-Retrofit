@@ -26,16 +26,22 @@ class CurrentPlaceFragment: Fragment() {
         mToolbar = mBinding.currentPlaceToolbar
         viewModel.initializeToolbar(activity as MainActivity, mToolbar, "Current place")
 
-        viewModel.initializeMediaPlayer("https://krokapp.by/media/sound/94a41eaf-ef06-42e5-8681-08f40185dac4.ogg", mBinding)
-
         return mBinding.root
     }
 
     override fun onResume() {
         super.onResume()
 
+        viewModel.initializeMediaPlayer("https://krokapp.by/media/sound/94a41eaf-ef06-42e5-8681-08f40185dac4.ogg", mBinding)
+
         mBinding.apPlayButton.setOnClickListener {
             viewModel.playAudio(mBinding)
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        viewModel.mpStop()
     }
 }
