@@ -35,6 +35,9 @@ class CitiesFragment: Fragment() {
         mToolbar = mBinding.citiesToolbar
         viewModel.initializeToolbar(activity as MainActivity, mToolbar, "Cities")
 
+        viewModel.setRegions(arguments?.getString("pass_data_str"))
+        viewModel.setLanguage(arguments?.getInt("pass_data_lang"))
+
         mRecyclerView = mBinding.citiesRv
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
 

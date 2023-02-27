@@ -9,7 +9,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.navOptions
 import com.vnazarov.krokkrefactored.MainActivity
 import com.vnazarov.krokkrefactored.databinding.RvItemBinding
-import com.vnazarov.krokkrefactored.utilits.helpers.REGION
 
 open class BaseViewModel: ViewModel() {
 
@@ -19,10 +18,13 @@ open class BaseViewModel: ViewModel() {
         navController = view.findNavController()
     }
 
-    private fun navigateTo(address: Int, array: ArrayList<Any> = arrayListOf(), fromName: String){
+    private fun navigateTo(address: Int, str: String = "", language: Int = 0, fromName: String){
         navController.navigate(
             address,
-            bundleOf(fromName to array),
+            bundleOf(
+                "${fromName}_str" to str,
+                "${fromName}_lang" to language
+                ),
             navOptions {
                 anim {
                     enter = androidx.navigation.ui.R.anim.nav_default_enter_anim
@@ -47,13 +49,13 @@ open class BaseViewModel: ViewModel() {
         }
     }
 
-    fun onBindItem(binding: RvItemBinding, name: String, address: Int, isRegion: Boolean = false, region: String = ""){
+    fun onBindItem(binding: RvItemBinding, name: String, address: Int, isRegion: Boolean = false, region: String = "", language: Int = 0){
         binding.itemName.text = name
 
         binding.fullItem.isClickable = true
         binding.fullItem.setOnClickListener {
-            if (isRegion) REGION = region
-            navigateTo(address, fromName = name)
+            if (isRegion) navigateTo(address = address, str = region, language = language, fromName = "pass_data")
+            else navigateTo(address, fromName = name)
         }
     }
 }

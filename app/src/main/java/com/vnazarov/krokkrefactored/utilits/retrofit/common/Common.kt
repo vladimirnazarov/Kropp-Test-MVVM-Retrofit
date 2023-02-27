@@ -5,7 +5,7 @@ import com.vnazarov.krokkrefactored.utilits.retrofit.`interface`.RetrofitService
 
 object Common {
 
-    private val BASE_URL = "http://krokapp.by/api/"
+    private const val BASE_URL = "http://krokapp.by/api/"
     val retrofitService: RetrofitServices
         get() = RetrofitClient.getClient(BASE_URL).create(RetrofitServices::class.java)
 }
