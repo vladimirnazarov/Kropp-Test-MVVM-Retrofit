@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.navOptions
 import com.vnazarov.krokkrefactored.MainActivity
 import com.vnazarov.krokkrefactored.databinding.RvItemBinding
+import com.vnazarov.krokkrefactored.utilits.helpers.REGION
 
 open class BaseViewModel: ViewModel() {
 
@@ -46,11 +47,12 @@ open class BaseViewModel: ViewModel() {
         }
     }
 
-    fun onBindItem(binding: RvItemBinding, name: String, address: Int){
+    fun onBindItem(binding: RvItemBinding, name: String, address: Int, isRegion: Boolean = false, region: String = ""){
         binding.itemName.text = name
 
         binding.fullItem.isClickable = true
         binding.fullItem.setOnClickListener {
+            if (isRegion) REGION = region
             navigateTo(address, fromName = name)
         }
     }

@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vnazarov.krokkrefactored.MainActivity
 import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.FragmentCitiesBinding
+import com.vnazarov.krokkrefactored.objects.City
 import com.vnazarov.krokkrefactored.utilits.adapters.CitiesAdapter
 import com.vnazarov.krokkrefactored.utilits.vm.CitiesViewModel
+import com.vnazarov.krokkrefactored.utilits.vm.MainActivityViewModel
 
 class CitiesFragment: Fragment() {
 
@@ -22,6 +24,7 @@ class CitiesFragment: Fragment() {
     private lateinit var adapter: CitiesAdapter
     private lateinit var mRecyclerView: RecyclerView
     private val viewModel: CitiesViewModel by activityViewModels()
+    private val activityViewModel: MainActivityViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,8 +46,9 @@ class CitiesFragment: Fragment() {
 
         viewModel.defineNavController(view)
 
-        val dataCities = viewModel.initializeCities()
-        adapter = CitiesAdapter(dataCities, viewModel, R.id.action_citiesFragment_to_placesFragment)
+        viewModel.setCities(activityViewModel.getCities() as ArrayList<City>)
+
+        adapter = CitiesAdapter(viewModel.initializeCities(), viewModel, R.id.action_citiesFragment_to_placesFragment)
         mRecyclerView.adapter = adapter
     }
 }
