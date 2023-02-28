@@ -13,7 +13,7 @@ import com.vnazarov.krokkrefactored.objects.Region
 open class BaseAdapter(
     private val list: List<Any>,
     private val viewModel: BaseViewModel,
-    private val address: Int
+    private val address: Int,
 ) : RecyclerView.Adapter<BaseAdapter.BaseHolder>() {
 
     inner class BaseHolder(val binding: RvItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -29,15 +29,16 @@ open class BaseAdapter(
             with(list[position]) {
                 when (this) {
                     is Region -> {
-                        viewModel.onBindItem(binding, this.name, address, true, this.region, this.language)
+                        viewModel.onBindItem(binding, this.name, address, true, region = this.region, language = this.language)
                         binding.image.load(this.imageId)
                     }
                     is City -> {
-                        viewModel.onBindItem(binding, this.cityName, address)
+                        viewModel.onBindItem(binding, this.cityName, address, isCity = true, city = this.id, language = this.language)
                         binding.image.load(this.cityEmblem)
                     }
                     is Place -> {
                         viewModel.onBindItem(binding, this.name, address)
+                        binding.image.load(this.logo)
                     } else -> Log.e("Adapter error", "Something went wrong")
                 }
             }

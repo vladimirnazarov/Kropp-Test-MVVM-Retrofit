@@ -18,12 +18,13 @@ open class BaseViewModel: ViewModel() {
         navController = view.findNavController()
     }
 
-    private fun navigateTo(address: Int, str: String = "", language: Int = 0, fromName: String){
+    private fun navigateTo(address: Int, region: String = "", city: Int = 0, language: Int = 0, fromName: String){
         navController.navigate(
             address,
             bundleOf(
-                "${fromName}_str" to str,
-                "${fromName}_lang" to language
+                "${fromName}_str" to region,
+                "${fromName}_lang" to language,
+                "${fromName}_city" to city
                 ),
             navOptions {
                 anim {
@@ -49,12 +50,13 @@ open class BaseViewModel: ViewModel() {
         }
     }
 
-    fun onBindItem(binding: RvItemBinding, name: String, address: Int, isRegion: Boolean = false, region: String = "", language: Int = 0){
+    fun onBindItem(binding: RvItemBinding, name: String, address: Int, isRegion: Boolean = false, isCity: Boolean = false, region: String = "", city: Int = 0, language: Int = 0){
         binding.itemName.text = name
 
         binding.fullItem.isClickable = true
         binding.fullItem.setOnClickListener {
-            if (isRegion) navigateTo(address = address, str = region, language = language, fromName = "pass_data")
+            if (isRegion) navigateTo(address = address, region = region, language = language, fromName = "pass_data")
+            else if (isCity) navigateTo(address = address, city = city, language = language, fromName = "pass_data")
             else navigateTo(address, fromName = name)
         }
     }

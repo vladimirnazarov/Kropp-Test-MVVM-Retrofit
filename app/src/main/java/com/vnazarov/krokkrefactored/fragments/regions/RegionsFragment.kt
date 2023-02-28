@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vnazarov.krokkrefactored.MainActivity
 import com.vnazarov.krokkrefactored.databinding.FragmentRegionsBinding
+import com.vnazarov.krokkrefactored.utilits.vm.MainActivityViewModel
 import com.vnazarov.krokkrefactored.utilits.vm.RegionsViewModel
 
 class RegionsFragment : Fragment() {
@@ -18,6 +19,7 @@ class RegionsFragment : Fragment() {
     private lateinit var mBinding: FragmentRegionsBinding
     private lateinit var mToolbar: Toolbar
     private lateinit var mRecyclerView: RecyclerView
+    private val activityViewModel: MainActivityViewModel by activityViewModels()
     private val viewModel: RegionsViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -40,6 +42,6 @@ class RegionsFragment : Fragment() {
 
         viewModel.defineNavController(view)
 
-        viewModel.initAdapter(activity as MainActivity, mRecyclerView, mToolbar)
+        viewModel.initAdapter(activity as MainActivity, mRecyclerView, mToolbar, activityViewModel, requireContext())
     }
 }
