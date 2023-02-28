@@ -29,7 +29,7 @@ open class BaseAdapter(
             with(list[position]) {
                 when (this) {
                     is Region -> {
-                        viewModel.onBindItem(binding, this.name, address, true, this.region)
+                        viewModel.onBindItem(binding, this.name, address, true, this.region, this.language)
                         binding.image.load(this.imageId)
                     }
                     is City -> {

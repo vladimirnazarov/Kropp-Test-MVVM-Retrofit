@@ -13,7 +13,6 @@ import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.objects.Region
 import com.vnazarov.krokkrefactored.utilits.BaseViewModel
 import com.vnazarov.krokkrefactored.utilits.adapters.RegionsAdapter
-import com.vnazarov.krokkrefactored.utilits.helpers.LANGUAGE
 
 class RegionsViewModel : BaseViewModel() {
 
@@ -96,47 +95,42 @@ class RegionsViewModel : BaseViewModel() {
 
             toolbarTitle = "Вобласці"
             mToolbar.title = toolbarTitle
-            LANGUAGE = 1
-            initLangData(adapter, rv)
+            initLangData(1, adapter, rv)
         }
         rLang2.setOnClickListener {
             dialog.hide()
 
             toolbarTitle = "Regions"
             mToolbar.title = toolbarTitle
-            LANGUAGE = 2
-            initLangData(adapter, rv)
+            initLangData(2, adapter, rv)
         }
         rLang3.setOnClickListener {
             dialog.hide()
 
             toolbarTitle = "Области"
             mToolbar.title = toolbarTitle
-            LANGUAGE = 3
-            initLangData(adapter, rv)
+            initLangData(3, adapter, rv)
         }
         rLang4.setOnClickListener {
             dialog.hide()
 
             toolbarTitle = "Oblast"
             mToolbar.title = toolbarTitle
-            LANGUAGE = 4
-            initLangData(adapter, rv)
+            initLangData(4, adapter, rv)
         }
         rLang5.setOnClickListener {
             dialog.hide()
 
             toolbarTitle = "地区"
             mToolbar.title = toolbarTitle
-            LANGUAGE = 5
-            initLangData(adapter, rv)
+            initLangData(5, adapter, rv)
         }
     }
 
-    private fun initLangData(adapter: RegionsAdapter, rv: RecyclerView){
+    private fun initLangData(language: Int, adapter: RegionsAdapter, rv: RecyclerView){
         val indexArray = arrayListOf<Region>()
         for (i in regionsData){
-            if (i.language != LANGUAGE){
+            if (i.language != language){
                 indexArray.add(i)
             }
         }
