@@ -37,7 +37,7 @@ open class BaseAdapter(
                         binding.image.load(this.cityEmblem)
                     }
                     is Place -> {
-                        viewModel.onBindItem(binding, this.name, address)
+                        viewModel.onBindItem(binding, this.name, address, isPlace = true, place = this)
                         binding.image.load(this.logo)
                     } else -> Log.e("Adapter error", "Something went wrong")
                 }
