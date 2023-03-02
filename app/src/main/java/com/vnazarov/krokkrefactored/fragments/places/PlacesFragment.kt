@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vnazarov.krokkrefactored.MainActivity
 import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.FragmentPlacesBinding
+import com.vnazarov.krokkrefactored.objects.Place
 import com.vnazarov.krokkrefactored.utilits.adapters.PlacesAdapter
+import com.vnazarov.krokkrefactored.utilits.vm.MainActivityViewModel
 import com.vnazarov.krokkrefactored.utilits.vm.PlacesViewModel
 
 class PlacesFragment: Fragment() {
@@ -22,6 +24,7 @@ class PlacesFragment: Fragment() {
     private lateinit var adapter: PlacesAdapter
     private lateinit var mRecyclerView: RecyclerView
     private val viewModel: PlacesViewModel by activityViewModels()
+    private val activityViewModel: MainActivityViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +34,9 @@ class PlacesFragment: Fragment() {
         mBinding = FragmentPlacesBinding.inflate(layoutInflater)
         mToolbar = mBinding.placesToolbar
         viewModel.initializeToolbar(activity as MainActivity, mToolbar, "Places")
+
+        viewModel.setCity(arguments?.getInt("pass_data_city"))
+        viewModel.setLanguage(arguments?.getInt("pass_data_lang"))
 
         mRecyclerView = mBinding.placesRv
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
@@ -43,8 +49,9 @@ class PlacesFragment: Fragment() {
 
         viewModel.defineNavController(view)
 
-        val dataPlaces = viewModel.initializePlaces()
-        adapter = PlacesAdapter(dataPlaces, viewModel, R.id.action_placesFragment_to_currentPlaceFragment)
+        viewModel.setPlaces(activityViewModel.getPlaces() as ArrayList<Place>)
+
+        adapter = PlacesAdapter(viewModel.initializePlaces(), viewModel, R.id.action_placesFragment_to_currentPlaceFragment)
         mRecyclerView.adapter = adapter
     }
 }

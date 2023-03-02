@@ -23,8 +23,8 @@ class CitiesFragment: Fragment() {
     private lateinit var mToolbar: Toolbar
     private lateinit var adapter: CitiesAdapter
     private lateinit var mRecyclerView: RecyclerView
-    private val viewModel: CitiesViewModel by activityViewModels()
     private val activityViewModel: MainActivityViewModel by activityViewModels()
+    private val viewModel: CitiesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +35,7 @@ class CitiesFragment: Fragment() {
         mToolbar = mBinding.citiesToolbar
         viewModel.initializeToolbar(activity as MainActivity, mToolbar, "Cities")
 
-        viewModel.setRegions(arguments?.getString("pass_data_str"))
+        viewModel.setRegion(arguments?.getString("pass_data_str"))
         viewModel.setLanguage(arguments?.getInt("pass_data_lang"))
 
         mRecyclerView = mBinding.citiesRv

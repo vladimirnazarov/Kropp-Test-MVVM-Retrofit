@@ -1,10 +1,12 @@
 package com.vnazarov.krokkrefactored.utilits.vm
 
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -66,7 +68,7 @@ class RegionsViewModel : BaseViewModel() {
         )
     }
 
-    private fun initializeDialog(activity: MainActivity, adapter: RegionsAdapter, rv: RecyclerView, mToolbar: Toolbar){
+    private fun initializeDialog(activity: MainActivity, adapter: RegionsAdapter, rv: RecyclerView, mToolbar: Toolbar, activityViewModel: MainActivityViewModel, context: Context){
         val dialog = Dialog(activity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_language_chose)
@@ -78,12 +80,12 @@ class RegionsViewModel : BaseViewModel() {
         layoutParams.width = 1000
         dialog.window?.attributes = layoutParams
 
-        initializeDialogButtons(dialog, adapter, rv, mToolbar)
+        initializeDialogButtons(dialog, adapter, rv, mToolbar, activityViewModel, context)
 
         dialog.show()
     }
 
-    private fun initializeDialogButtons(dialog: Dialog, adapter: RegionsAdapter, rv: RecyclerView, mToolbar: Toolbar){
+    private fun initializeDialogButtons(dialog: Dialog, adapter: RegionsAdapter, rv: RecyclerView, mToolbar: Toolbar, activityViewModel: MainActivityViewModel, context: Context){
         val rLang1 = dialog.findViewById<ConstraintLayout>(R.id.lang_1_dialog)
         val rLang2 = dialog.findViewById<ConstraintLayout>(R.id.lang_2_dialog)
         val rLang3 = dialog.findViewById<ConstraintLayout>(R.id.lang_3_dialog)
@@ -91,39 +93,53 @@ class RegionsViewModel : BaseViewModel() {
         val rLang5 = dialog.findViewById<ConstraintLayout>(R.id.lang_5_dialog)
 
         rLang1.setOnClickListener {
-            dialog.hide()
+            Toast.makeText(context, "Калі ласка, пачакайце пакуль усе дадзеныя не загрузяцца", Toast.LENGTH_LONG).show()
+            activityViewModel.loadData(context) {
+                dialog.hide()
 
-            toolbarTitle = "Вобласці"
-            mToolbar.title = toolbarTitle
-            initLangData(1, adapter, rv)
+                toolbarTitle = "Вобласці"
+                mToolbar.title = toolbarTitle
+                initLangData(1, adapter, rv)
+            }
         }
         rLang2.setOnClickListener {
-            dialog.hide()
+            Toast.makeText(context, "Please, wait until all data is loaded", Toast.LENGTH_LONG).show()
+            activityViewModel.loadData(context) {
+                dialog.hide()
 
-            toolbarTitle = "Regions"
-            mToolbar.title = toolbarTitle
-            initLangData(2, adapter, rv)
+                toolbarTitle = "Regions"
+                mToolbar.title = toolbarTitle
+                initLangData(2, adapter, rv) }
         }
         rLang3.setOnClickListener {
-            dialog.hide()
+            Toast.makeText(context, "Пожалуйста, подождите пока все данные не загрузятся", Toast.LENGTH_LONG).show()
+            activityViewModel.loadData(context) {
+                dialog.hide()
 
-            toolbarTitle = "Области"
-            mToolbar.title = toolbarTitle
-            initLangData(3, adapter, rv)
+                toolbarTitle = "Области"
+                mToolbar.title = toolbarTitle
+                initLangData(3, adapter, rv)
+            }
         }
         rLang4.setOnClickListener {
-            dialog.hide()
+            Toast.makeText(context, "Počkejte prosím, dokud nebudou nahrána všechna data", Toast.LENGTH_LONG).show()
+            activityViewModel.loadData(context) {
+                dialog.hide()
 
-            toolbarTitle = "Oblast"
-            mToolbar.title = toolbarTitle
-            initLangData(4, adapter, rv)
+                toolbarTitle = "Oblasti"
+                mToolbar.title = toolbarTitle
+                initLangData(4, adapter, rv)
+            }
         }
         rLang5.setOnClickListener {
-            dialog.hide()
+            Toast.makeText(context, "请等待，直到所有的数据都已上传", Toast.LENGTH_LONG).show()
+            activityViewModel.loadData(context) {
+                dialog.hide()
 
-            toolbarTitle = "地区"
-            mToolbar.title = toolbarTitle
-            initLangData(5, adapter, rv)
+                toolbarTitle = "地区"
+                mToolbar.title = toolbarTitle
+                initLangData(5, adapter, rv)
+            }
         }
     }
 
@@ -139,11 +155,11 @@ class RegionsViewModel : BaseViewModel() {
         rv.adapter = adapter
     }
 
-    fun initAdapter(activity: MainActivity, rv: RecyclerView, mToolbar: Toolbar){
+    fun initAdapter(activity: MainActivity, rv: RecyclerView, mToolbar: Toolbar, activityViewModel: MainActivityViewModel, context: Context){
         if (regionsData.size == 0){
             initializeRegions()
             adapter = RegionsAdapter(regionsData, this, R.id.action_regionsFragment_to_citiesFragment)
-            initializeDialog(activity, adapter, rv, mToolbar)
+            initializeDialog(activity, adapter, rv, mToolbar, activityViewModel, context)
         } else {
             adapter = RegionsAdapter(regionsData, this, R.id.action_regionsFragment_to_citiesFragment)
             rv.adapter = adapter

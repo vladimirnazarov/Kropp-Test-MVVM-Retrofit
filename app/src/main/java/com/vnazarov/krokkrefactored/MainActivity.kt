@@ -22,6 +22,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(mBinding.root)
 
         mService = Common.retrofitService
-        viewModel.downloadCities(mService)
+        viewModel.setService(mService)
     }
 }

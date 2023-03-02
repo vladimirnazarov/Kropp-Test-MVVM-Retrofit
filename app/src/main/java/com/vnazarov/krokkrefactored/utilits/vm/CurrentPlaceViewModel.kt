@@ -15,6 +15,16 @@ class CurrentPlaceViewModel : BaseViewModel() {
     private val mediaScope = CoroutineScope(Dispatchers.Main + mediaJob)
     private var mediaPlayer: MediaPlayer? = null
 
+    private var place: ArrayList<String> = arrayListOf()
+
+    fun setPlace(place: ArrayList<String>?){
+        if (place != null){
+            this.place = place
+        }
+    }
+
+    fun getPlace() = place
+
     fun initializeMediaPlayer(url: String, binding: FragmentCurrentPlaceBinding){
 
         mpStatus = "play"

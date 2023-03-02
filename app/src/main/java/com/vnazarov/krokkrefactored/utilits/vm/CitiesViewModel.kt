@@ -23,7 +23,7 @@ class CitiesViewModel: BaseViewModel() {
         if (citiesUnProcessed.isEmpty()) citiesUnProcessed = cities
     }
 
-    fun setRegions(region: String?){
+    fun setRegion(region: String?){
         if (region != null) {
             currentRegion = region
         }
