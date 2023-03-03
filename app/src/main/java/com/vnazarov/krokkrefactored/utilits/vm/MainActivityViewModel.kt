@@ -18,7 +18,8 @@ class MainActivityViewModel : ViewModel() {
     private val places = MutableLiveData<MutableList<Place>>()
     private lateinit var mService: RetrofitServices
 
-    private fun downloadCities(context: Context, onSuccess: () -> Unit) {
+    private fun downloadCities(context: Context, onSuccess: () -> Unit, onFail: () -> Unit, onWait: () -> Unit) {
+        onWait()
         mService.getCities().enqueue(object : Callback<MutableList<City>> {
             override fun onResponse(
                 call: Call<MutableList<City>>,
@@ -26,6 +27,7 @@ class MainActivityViewModel : ViewModel() {
             ) {
                 cities.value = response.body()
                 if (cities.value == null){
+                    onFail()
                     Toast.makeText(context, "Bad gateway", Toast.LENGTH_SHORT).show()
                 } else onSuccess()
             }
@@ -35,7 +37,8 @@ class MainActivityViewModel : ViewModel() {
         })
     }
 
-    private fun downloadPlaces(context: Context, onSuccess: () -> Unit) {
+    private fun downloadPlaces(context: Context, onSuccess: () -> Unit, onFail: () -> Unit, onWait: () -> Unit) {
+        onWait()
         mService.getPlaces().enqueue(object : Callback<MutableList<Place>> {
             override fun onResponse(
                 call: Call<MutableList<Place>>,
@@ -43,6 +46,7 @@ class MainActivityViewModel : ViewModel() {
             ) {
                 places.value = response.body()
                 if (places.value == null){
+                    onFail()
                     Toast.makeText(context, "Bad gateway", Toast.LENGTH_SHORT).show()
                 } else onSuccess()
             }
@@ -53,17 +57,31 @@ class MainActivityViewModel : ViewModel() {
         })
     }
 
-    fun loadData(context: Context, onSuccess: () -> Unit) {
+    fun loadData(context: Context, onSuccess: () -> Unit, onFail: () -> Unit, onWait: () -> Unit) {
         if (cities.value == null) {
-            downloadCities(context) {
-                downloadPlaces(context) {
+
+            downloadCities(context, {
+                downloadPlaces(context, {
                     onSuccess()
-                }
-            }
+                }, {
+                    onFail()
+                }, {
+                    onWait()
+                })
+            }, {
+                onFail()
+            }, {
+                onWait()
+            })
+
         } else {
-            downloadPlaces(context) {
+            downloadPlaces(context, {
                 onSuccess()
-            }
+            }, {
+                onFail()
+            }, {
+                onWait()
+            })
         }
     }
 

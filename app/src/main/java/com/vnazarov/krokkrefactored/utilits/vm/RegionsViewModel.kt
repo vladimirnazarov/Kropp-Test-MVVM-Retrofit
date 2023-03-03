@@ -94,52 +94,73 @@ class RegionsViewModel : BaseViewModel() {
 
         rLang1.setOnClickListener {
             Toast.makeText(context, "Калі ласка, пачакайце пакуль усе дадзеныя не загрузяцца", Toast.LENGTH_LONG).show()
-            activityViewModel.loadData(context) {
+            activityViewModel.loadData(context, {
                 dialog.hide()
 
                 toolbarTitle = "Вобласці"
                 mToolbar.title = toolbarTitle
                 initLangData(1, adapter, rv)
-            }
+            }, {
+                dialog.setContentView(R.layout.dialog_language_chose)
+            }, {
+                dialog.setContentView(R.layout.dialog_await)
+            })
         }
         rLang2.setOnClickListener {
             Toast.makeText(context, "Please, wait until all data is loaded", Toast.LENGTH_LONG).show()
-            activityViewModel.loadData(context) {
+            activityViewModel.loadData(context, {
                 dialog.hide()
 
                 toolbarTitle = "Regions"
                 mToolbar.title = toolbarTitle
-                initLangData(2, adapter, rv) }
+                initLangData(2, adapter, rv)
+            }, {
+                dialog.setContentView(R.layout.dialog_language_chose)
+            }, {
+                dialog.setContentView(R.layout.dialog_await)
+            })
         }
         rLang3.setOnClickListener {
             Toast.makeText(context, "Пожалуйста, подождите пока все данные не загрузятся", Toast.LENGTH_LONG).show()
-            activityViewModel.loadData(context) {
+            activityViewModel.loadData(context, {
                 dialog.hide()
 
                 toolbarTitle = "Области"
                 mToolbar.title = toolbarTitle
                 initLangData(3, adapter, rv)
-            }
+            }, {
+                dialog.setContentView(R.layout.dialog_language_chose)
+            }, {
+                dialog.setContentView(R.layout.dialog_await)
+            })
         }
         rLang4.setOnClickListener {
             Toast.makeText(context, "Počkejte prosím, dokud nebudou nahrána všechna data", Toast.LENGTH_LONG).show()
-            activityViewModel.loadData(context) {
+            activityViewModel.loadData(context, {
                 dialog.hide()
 
                 toolbarTitle = "Oblasti"
                 mToolbar.title = toolbarTitle
                 initLangData(4, adapter, rv)
-            }
+            }, {
+                dialog.setContentView(R.layout.dialog_language_chose)
+            }, {
+                dialog.setContentView(R.layout.dialog_await)
+            })
         }
         rLang5.setOnClickListener {
             Toast.makeText(context, "请等待，直到所有的数据都已上传", Toast.LENGTH_LONG).show()
-            activityViewModel.loadData(context) {
+            activityViewModel.loadData(context, {
                 dialog.hide()
 
                 toolbarTitle = "地区"
                 mToolbar.title = toolbarTitle
                 initLangData(5, adapter, rv)
-            }
+            }, {
+                dialog.setContentView(R.layout.dialog_language_chose)
+            }, {
+                dialog.setContentView(R.layout.dialog_await)
+            })
         }
     }
 
