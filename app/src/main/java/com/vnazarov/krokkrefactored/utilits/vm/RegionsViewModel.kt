@@ -80,12 +80,20 @@ class RegionsViewModel : BaseViewModel() {
         layoutParams.width = 1000
         dialog.window?.attributes = layoutParams
 
-        initializeDialogButtons(dialog, adapter, rv, mToolbar, activityViewModel, context)
+        val dialog2 = Dialog(activity)
+        dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog2.setContentView(R.layout.dialog_await)
+        dialog2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog2.setCancelable(false)
+
+        dialog2.window?.attributes = layoutParams
+
+        initializeDialogButtons(dialog, dialog2, adapter, rv, mToolbar, activityViewModel, context)
 
         dialog.show()
     }
 
-    private fun initializeDialogButtons(dialog: Dialog, adapter: RegionsAdapter, rv: RecyclerView, mToolbar: Toolbar, activityViewModel: MainActivityViewModel, context: Context){
+    private fun initializeDialogButtons(dialog: Dialog, dialog2: Dialog, adapter: RegionsAdapter, rv: RecyclerView, mToolbar: Toolbar, activityViewModel: MainActivityViewModel, context: Context){
         val rLang1 = dialog.findViewById<ConstraintLayout>(R.id.lang_1_dialog)
         val rLang2 = dialog.findViewById<ConstraintLayout>(R.id.lang_2_dialog)
         val rLang3 = dialog.findViewById<ConstraintLayout>(R.id.lang_3_dialog)
@@ -101,9 +109,11 @@ class RegionsViewModel : BaseViewModel() {
                 mToolbar.title = toolbarTitle
                 initLangData(1, adapter, rv)
             }, {
-                dialog.setContentView(R.layout.dialog_language_chose)
+                dialog2.hide()
+                dialog.show()
             }, {
-                dialog.setContentView(R.layout.dialog_await)
+                dialog.hide()
+                dialog2.show()
             })
         }
         rLang2.setOnClickListener {
@@ -115,9 +125,11 @@ class RegionsViewModel : BaseViewModel() {
                 mToolbar.title = toolbarTitle
                 initLangData(2, adapter, rv)
             }, {
-                dialog.setContentView(R.layout.dialog_language_chose)
+                dialog2.hide()
+                dialog.show()
             }, {
-                dialog.setContentView(R.layout.dialog_await)
+                dialog.hide()
+                dialog2.show()
             })
         }
         rLang3.setOnClickListener {
@@ -129,9 +141,11 @@ class RegionsViewModel : BaseViewModel() {
                 mToolbar.title = toolbarTitle
                 initLangData(3, adapter, rv)
             }, {
-                dialog.setContentView(R.layout.dialog_language_chose)
+                dialog2.hide()
+                dialog.show()
             }, {
-                dialog.setContentView(R.layout.dialog_await)
+                dialog.hide()
+                dialog2.show()
             })
         }
         rLang4.setOnClickListener {
@@ -143,9 +157,11 @@ class RegionsViewModel : BaseViewModel() {
                 mToolbar.title = toolbarTitle
                 initLangData(4, adapter, rv)
             }, {
-                dialog.setContentView(R.layout.dialog_language_chose)
+                dialog2.hide()
+                dialog.show()
             }, {
-                dialog.setContentView(R.layout.dialog_await)
+                dialog.hide()
+                dialog2.show()
             })
         }
         rLang5.setOnClickListener {
@@ -157,9 +173,11 @@ class RegionsViewModel : BaseViewModel() {
                 mToolbar.title = toolbarTitle
                 initLangData(5, adapter, rv)
             }, {
-                dialog.setContentView(R.layout.dialog_language_chose)
+                dialog2.hide()
+                dialog.show()
             }, {
-                dialog.setContentView(R.layout.dialog_await)
+                dialog.hide()
+                dialog2.show()
             })
         }
     }

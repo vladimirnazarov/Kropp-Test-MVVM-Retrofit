@@ -1,7 +1,6 @@
 package com.vnazarov.krokkrefactored.utilits.vm
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +17,12 @@ class MainActivityViewModel : ViewModel() {
     private val places = MutableLiveData<MutableList<Place>>()
     private lateinit var mService: RetrofitServices
 
-    private fun downloadCities(context: Context, onSuccess: () -> Unit, onFail: () -> Unit, onWait: () -> Unit) {
+    private fun downloadCities(
+        context: Context,
+        onSuccess: () -> Unit,
+        onFail: () -> Unit,
+        onWait: () -> Unit
+    ) {
         onWait()
         mService.getCities().enqueue(object : Callback<MutableList<City>> {
             override fun onResponse(
@@ -26,18 +30,25 @@ class MainActivityViewModel : ViewModel() {
                 response: Response<MutableList<City>>
             ) {
                 cities.value = response.body()
-                if (cities.value == null){
+                if (cities.value == null) {
                     onFail()
                     Toast.makeText(context, "Bad gateway", Toast.LENGTH_SHORT).show()
                 } else onSuccess()
             }
 
             override fun onFailure(call: Call<MutableList<City>>, t: Throwable) {
+                Toast.makeText(context, "Bad gateway", Toast.LENGTH_SHORT).show()
+                onFail()
             }
         })
     }
 
-    private fun downloadPlaces(context: Context, onSuccess: () -> Unit, onFail: () -> Unit, onWait: () -> Unit) {
+    private fun downloadPlaces(
+        context: Context,
+        onSuccess: () -> Unit,
+        onFail: () -> Unit,
+        onWait: () -> Unit
+    ) {
         onWait()
         mService.getPlaces().enqueue(object : Callback<MutableList<Place>> {
             override fun onResponse(
@@ -45,14 +56,15 @@ class MainActivityViewModel : ViewModel() {
                 response: Response<MutableList<Place>>
             ) {
                 places.value = response.body()
-                if (places.value == null){
+                if (places.value == null) {
                     onFail()
                     Toast.makeText(context, "Bad gateway", Toast.LENGTH_SHORT).show()
                 } else onSuccess()
             }
 
             override fun onFailure(call: Call<MutableList<Place>>, t: Throwable) {
-                Log.e("Error: ", t.message!!)
+                Toast.makeText(context, "Bad gateway", Toast.LENGTH_SHORT).show()
+                onFail()
             }
         })
     }

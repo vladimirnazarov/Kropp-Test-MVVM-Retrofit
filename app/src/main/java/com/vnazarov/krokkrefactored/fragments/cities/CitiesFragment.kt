@@ -33,10 +33,11 @@ class CitiesFragment: Fragment() {
     ): View {
         mBinding = FragmentCitiesBinding.inflate(layoutInflater)
         mToolbar = mBinding.citiesToolbar
-        viewModel.initializeToolbar(activity as MainActivity, mToolbar, "Cities")
 
         viewModel.setRegion(arguments?.getString("pass_data_str"))
         viewModel.setLanguage(arguments?.getInt("pass_data_lang"))
+
+        viewModel.initializeToolbar(activity as MainActivity, mToolbar, viewModel.getRegion())
 
         mRecyclerView = mBinding.citiesRv
         mRecyclerView.layoutManager = LinearLayoutManager(activity)

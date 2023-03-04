@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vnazarov.krokkrefactored.MainActivity
 import com.vnazarov.krokkrefactored.R
 import com.vnazarov.krokkrefactored.databinding.FragmentPlacesBinding
+import com.vnazarov.krokkrefactored.objects.City
 import com.vnazarov.krokkrefactored.objects.Place
 import com.vnazarov.krokkrefactored.utilits.adapters.PlacesAdapter
 import com.vnazarov.krokkrefactored.utilits.vm.MainActivityViewModel
@@ -33,10 +34,12 @@ class PlacesFragment: Fragment() {
     ): View {
         mBinding = FragmentPlacesBinding.inflate(layoutInflater)
         mToolbar = mBinding.placesToolbar
-        viewModel.initializeToolbar(activity as MainActivity, mToolbar, "Places")
 
         viewModel.setCity(arguments?.getInt("pass_data_city"))
         viewModel.setLanguage(arguments?.getInt("pass_data_lang"))
+        viewModel.setCities(activityViewModel.getCities() as ArrayList<City>)
+
+        viewModel.initializeToolbar(activity as MainActivity, mToolbar, viewModel.getCity())
 
         mRecyclerView = mBinding.placesRv
         mRecyclerView.layoutManager = LinearLayoutManager(activity)

@@ -34,4 +34,6 @@ class CitiesViewModel: BaseViewModel() {
             currentLanguage = language
         }
     }
+
+    fun getRegion() = currentRegion
 }
