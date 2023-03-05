@@ -37,7 +37,7 @@ class MainActivityViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<MutableList<City>>, t: Throwable) {
-                Toast.makeText(context, "Bad gateway", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
                 onFail()
             }
         })
@@ -63,7 +63,7 @@ class MainActivityViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<MutableList<Place>>, t: Throwable) {
-                Toast.makeText(context, "Bad gateway", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
                 onFail()
             }
         })
