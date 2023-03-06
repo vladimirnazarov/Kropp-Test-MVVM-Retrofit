@@ -16,7 +16,7 @@ object RetrofitClient {
                 .callTimeout(2, TimeUnit.MINUTES)
                 .connectTimeout(300, TimeUnit.SECONDS)
                 .readTimeout(300, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(300, TimeUnit.SECONDS)
 
             val retrofitBuilder = Retrofit.Builder()
                 .baseUrl(baseUrl)
